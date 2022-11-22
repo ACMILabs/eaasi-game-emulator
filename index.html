@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACMI x EaaSI game emulator</title>
+
+    <script type="module" src="https://emulation-as-a-service.gitlab.io/eaas-client/webcomponent.js"></script>
+    <style>
+        html, body {
+            margin: 0;
+            border: 0;
+            background-color: black;
+        }
+        .playitagain {
+            width: 100rem;
+            margin: 0 auto;
+            border: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+
+    <eaas-environment
+        id="playitagain"
+        class="playitagain"
+        eaas-service="https://playitagain.aarnet.edu.au/emil/"
+        environment-id="e77b7e3c-9d64-48ee-a7be-ed39e1c8f7bd"
+        autoplay
+    >
+    Loading...
+</eaas-environment>
+
+<!-- TODO: Add ability for JavaScript to replace the environment-id with one from a query string -->
+
+</body>
+</html>
