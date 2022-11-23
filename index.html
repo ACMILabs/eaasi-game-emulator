@@ -12,6 +12,7 @@
             margin: 0;
             border: 0;
             background-color: black;
+            color: white;
         }
         .playitagain {
             width: 100rem;
@@ -21,22 +22,38 @@
             top: 50%;
             left: 50%;
             transform: translateY(-50%) translateX(-50%);
+            text-align: center;
         }
     </style>
 </head>
 <body>
+    <!-- Load the environment-id from the query string ?id=your-environment-id -->
+    <script>
+        const body = document.getElementsByTagName('body')[0];
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
 
-    <eaas-environment
-        id="playitagain"
-        class="playitagain"
-        eaas-service="https://playitagain.aarnet.edu.au/emil/"
-        environment-id="e77b7e3c-9d64-48ee-a7be-ed39e1c8f7bd"
-        autoplay
-    >
-    Loading...
-</eaas-environment>
+        let eaasEnvironment = document.createElement('eaas-environment');
+        eaasEnvironment.id = 'playitagain';
+        eaasEnvironment.className = 'playitagain';
+        eaasEnvironment.setAttribute('eaas-service', 'https://playitagain.aarnet.edu.au/emil/');
+        eaasEnvironment.setAttribute('autoplay', true);
 
-<!-- TODO: Add ability for JavaScript to replace the environment-id with one from a query string -->
+        // Show the ACMI logo while the emulator is loading
+        eaasEnvironment.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="248" height="56" viewBox="0 0 248 56" style="fill: white;"><g fill-rule="evenodd"><path d="M40 38.21c0 3.129-.774 10.337-10.11 12.4-4.673 1.035-12.075.159-14.753-4.531-1.456-2.551-1.648-6.196.219-8.59 2.477-3.465 7.635-4.234 11.762-4.785 4.398-.587 8.86-1.015 12.882-2.705v8.21zM0 16.999c4.076.004 16 0 16 0 0-3.005.18-5.81 2.263-8.324 1.794-2.166 4.376-3.248 7.124-3.513 4.553-.438 11.06-.283 13.534 4.22 1.379 2.51 1.594 6.098-.271 8.392-1.07 1.317-2.58 2.223-4.21 2.699-2.587.757-5.384 1.153-8.063 1.415-2.717.265-5.477.62-8.28 1.063a78.753 78.753 0 00-8.345 1.795c-2.76.755-5.214 1.642-7.36 3.148-.872.612-1.65 1.325-2.392 2.105v26h56V0H0v17zM231.999 56h16V0h-16zM128 56h16V22.475c0-9.875 2-17.476 12-17.476s12 7.601 12 17.476V56h16V22.475c0-9.875 2-17.476 12-17.476 9.998 0 12 7.6 12 17.476v33.524h16V0h-96v56zM78.765 12.714c1.329-2.241 3.048-4.074 5.158-5.494 2.108-1.417 4.722-2.222 7.84-2.221 8.243.003 12.951 3.857 14.236 12h14l-.001-17H64V56h56V38.999h-14c-1.285 8.144-5.993 12-14.236 12-3.118 0-5.732-.804-7.84-2.221-2.11-1.42-3.829-3.252-5.158-5.494a23.119 23.119 0 01-2.819-7.315 40.45 40.45 0 01-.824-7.97c.006-2.62.28-5.302.824-7.97a23.119 23.119 0 012.819-7.315"></path></g></svg>';
 
+        let environmentId = params.id;
+        if (environmentId !== null) {
+            let eaasi = document.getElementsByName('eaas-environment');
+            debugger;
+            eaasEnvironment.setAttribute('environment-id', environmentId);
+        } else {
+            // Load the Commodore 64 emulator if no id is present
+            eaasEnvironment.setAttribute('environment-id', 'e77b7e3c-9d64-48ee-a7be-ed39e1c8f7bd');
+        }
+
+        body.appendChild(eaasEnvironment);
+    </script>
 </body>
 </html>
