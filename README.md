@@ -9,6 +9,7 @@ A centred HTML page that loads an ACMI EaaSI game emulator from its `environment
 * The emulator should load centred in the screen
 * If you visit that page without any `id` set you should see the Commodore 64 emulator
 * To change the loading logo, set `eaasEnvironment.innerHTML` to your own HTML in `index.html`
+* To see an example HTML page of links to different environments load `base.html`
 
 ## Deployment
 
