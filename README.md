@@ -1,11 +1,13 @@
 # ACMI x EaaSI game emulator
 
-A centred HTML page that loads an ACMI EaaSI game emulator from its `environment-id`.
+A centred HTML page that loads an ACMI EaaSI game emulator from its `environment-id`, and ISO images from `object-id` or `URL`.
 
 ## Usage
 
 * Find the `environment-id` of the game emulator you'd like to load in the [XOS Work](https://xos.acmi.net.au/admin/collection/work/?q=Emulation+of) field `Eaas environment id` or from the URL of your environment at [playitagain.aarnet.edu.au](https://playitagain.aarnet.edu.au).
 * Visit https://games.acmi.net.au?id=ENVIRONMENT-ID
+* To load an ISO image from an EaaSI object ID, add `isoImageId=ISO-OBJECT-ID` to the URL. e.g. https://games.acmi.net.au?id=ENVIRONMENT-ID&isoImageId=ISO-OBJECT-ID
+* To load an ISO image from a URL, add `isoImageUrl=https://your-image-url.com/image.iso` to the URL. e.g. https://games.acmi.net.au?id=ENVIRONMENT-ID&isoImageUrl=https://your-image-url.com/image.iso
 * The emulator should load centred in the screen
 * If you visit that page without any `id` set you should see the Commodore 64 emulator
 * To change the loading logo, set `eaasEnvironment.innerHTML` to your own HTML in `index.html`
