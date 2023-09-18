@@ -28,6 +28,8 @@
 </head>
 <body>
     <!-- Load the environment-id from the query string ?id=your-environment-id -->
+    <!-- Load the ISO image object-id from the query string ?isoImageId=your-object-id -->
+    <!-- Load the ISO image URL from the query string ?isoImageUrl=https://your-image-url.com/image.iso -->
     <script>
         const body = document.getElementsByTagName('body')[0];
         const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -45,11 +47,25 @@
 
         let environmentId = params.id;
         if (environmentId !== null) {
-            let eaasi = document.getElementsByName('eaas-environment');
             eaasEnvironment.setAttribute('environment-id', environmentId);
         } else {
             // Load the Commodore 64 emulator if no id is present
             eaasEnvironment.setAttribute('environment-id', 'e77b7e3c-9d64-48ee-a7be-ed39e1c8f7bd');
+        }
+
+        let isoImageId = params.isoImageId;
+        if (isoImageId !== null) {
+            let eaasMedium = document.createElement('eaas-medium');
+            eaasMedium.setAttribute('object-id', isoImageId);
+            eaasEnvironment.appendChild(eaasMedium);
+        }
+
+        let isoImageUrl = params.isoImageUrl;
+        if (isoImageUrl !== null) {
+            let eaasMedium = document.createElement('eaas-medium');
+            eaasMedium.setAttribute('type', 'cdrom');
+            eaasMedium.setAttribute('source-url', isoImageUrl);
+            eaasEnvironment.appendChild(eaasMedium);
         }
 
         body.appendChild(eaasEnvironment);
